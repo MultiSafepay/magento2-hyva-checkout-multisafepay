@@ -1,28 +1,27 @@
-import { useCallback, useContext } from 'react';
+import { useCallback } from 'react';
 import _get from 'lodash.get';
 import _set from 'lodash.set';
-
 import { __ } from '../../../../i18n';
 import { performRedirect } from '../utility';
 import { LOGIN_FORM } from '../../../../config';
-import AppContext from '../../../../context/App/AppContext';
-import CartContext from '../../../../context/Cart/CartContext';
+import useMultiSafepayAppContext from './useMultiSafepayAppContext';
+import useMultiSafepayCartContext from './useMultiSafepayCartContext';
 
 export default function usePerformPlaceOrder(paymentMethodCode) {
   const { cartId, setRestPaymentMethod, setOrderInfo } =
-    useContext(CartContext);
-  const { isLoggedIn, setPageLoader, setErrorMessage } = useContext(AppContext);
+    useMultiSafepayCartContext();
+  const { isLoggedIn, setPageLoader, setErrorMessage } =
+    useMultiSafepayAppContext();
 
   return useCallback(
-    async (values, additionalData) => {
+    async (values) => {
       try {
-        const email = _get(values, `${LOGIN_FORM}.email`);
         const paymentMethodData = {
           paymentMethod: {
             method: paymentMethodCode,
-            additional_data: additionalData,
           },
         };
+        const email = _get(values, `${LOGIN_FORM}.email`);
 
         if (!isLoggedIn) {
           _set(paymentMethodData, 'email', email);

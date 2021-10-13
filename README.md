@@ -35,6 +35,11 @@ Add our package to the PaymentMethodsRepo section in the reactapp package.json:
 },
 ```
 
+Install the MultiSafepay package:
+```
+npm install
+```
+
 After that, add the MultiSafepay renderer to reactapp/src/PaymentMethods/paymentConfig.json:
 
 ```

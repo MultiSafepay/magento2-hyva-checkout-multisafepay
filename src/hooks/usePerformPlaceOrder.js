@@ -14,11 +14,12 @@ export default function usePerformPlaceOrder(paymentMethodCode) {
     useMultiSafepayAppContext();
 
   return useCallback(
-    async (values) => {
+    async (values, additionalData) => {
       try {
         const paymentMethodData = {
           paymentMethod: {
             method: paymentMethodCode,
+            additional_data: additionalData,
           },
         };
         const email = _get(values, `${LOGIN_FORM}.email`);

@@ -40,6 +40,14 @@ Install the MultiSafepay package:
 npm install
 ```
 
+After that, add the MultiSafepay renderer to reactapp/src/PaymentMethods/paymentConfig.json:
+
+```
+{"availablePaymentMethods":[
+    "multisafepay"
+]}
+```
+
 Make sure to rebuild the project with:
 ```shell
 npm run build

@@ -1,8 +1,9 @@
 import PaymentBaseComponent from './src/components/PaymentBaseComponent';
+import IdealComponent from './src/components/IdealComponent';
 
 export default {
   multisafepay: PaymentBaseComponent,
-  multisafepay_ideal: PaymentBaseComponent,
+  multisafepay_ideal: IdealComponent,
   multisafepay_afterpay: PaymentBaseComponent,
   multisafepay_alipay: PaymentBaseComponent,
   multisafepay_amex: PaymentBaseComponent,

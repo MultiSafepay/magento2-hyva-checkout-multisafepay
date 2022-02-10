@@ -2,32 +2,34 @@ import React, { useEffect, useContext } from 'react';
 import { func, shape } from 'prop-types';
 import { __ } from '../../../../../i18n';
 import RadioInput from '../../../../../components/common/Form/RadioInput';
+import TextInput from '../../../../../components/common/Form/TextInput';
 import Card from '../../../../../components/common/Card';
-import SelectInput from '../../../../../components/common/Form/SelectInput';
 import { paymentMethodShape } from '../../utility';
 import CheckoutFormContext from '../../../../../context/Form/CheckoutFormContext';
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
-import useMultiSafepayIdeal from './hooks/useMultiSafepayIdeal';
+import useMultiSafepayDirectDebit from './hooks/useMultiSafepayDirectDebit';
 import { PAYMENT_METHOD_FORM } from '../../../../../config';
-import idealConfig from './idealConfig';
+import directDebitConfig from './directDebitConfig';
 
-const issuersField = `${PAYMENT_METHOD_FORM}.multisafepay.ideal.issuersField`;
+const accountHolderNameField = `${PAYMENT_METHOD_FORM}.multisafepay.directdebit.accountHolderNameField`;
+const accountHolderIbanField = `${PAYMENT_METHOD_FORM}.multisafepay.directdebit.accountHolderIbanField`;
 
-function IdealComponent({ method, selected, actions }) {
+function DirectDebitComponent({ method, selected, actions }) {
   const { formikData, setFieldValue } = useMultiSafepayPaymentMethodContext();
   const { registerPaymentAction } = useContext(CheckoutFormContext);
-  const { placeOrderWithIdeal } = useMultiSafepayIdeal(method.code);
+  const { placeOrderWithDirectDebit } = useMultiSafepayDirectDebit(method.code);
   const isSelected = method.code === selected.code;
 
   useEffect(() => {
-    setFieldValue(issuersField, '');
+    setFieldValue(accountHolderNameField, '');
+    setFieldValue(accountHolderIbanField, '');
   }, [setFieldValue]);
 
   useEffect(() => {
-    registerPaymentAction(method.code, placeOrderWithIdeal);
-  }, [method, registerPaymentAction, placeOrderWithIdeal]);
+    registerPaymentAction(method.code, placeOrderWithDirectDebit);
+  }, [method, registerPaymentAction, placeOrderWithDirectDebit]);
 
-  const idealRadioInput = (
+  const DirectDebitRadioInput = (
     <RadioInput
       value={method.code}
       label={method.title}
@@ -37,21 +39,25 @@ function IdealComponent({ method, selected, actions }) {
     />
   );
 
-  if (!isSelected) {
-    return idealRadioInput;
+  if (!isSelected || directDebitConfig.transaction_type === 'redirect') {
+    return DirectDebitRadioInput;
   }
 
   return (
     <div>
-      <div>{idealRadioInput}</div>
+      <div>{DirectDebitRadioInput}</div>
       <div className="mx-4 my-4">
         <Card bg="darker">
           <div className="container flex flex-col justify-center w-4/5">
-            <SelectInput
+            <TextInput
+              label={__('Date of Birth')}
+              name={accountHolderNameField}
               formikData={formikData}
-              name={issuersField}
-              label={__('Choose your bank')}
-              options={idealConfig.issuers}
+            />
+            <TextInput
+              label={__('Account number')}
+              name={accountHolderIbanField}
+              formikData={formikData}
             />
           </div>
         </Card>
@@ -60,10 +66,10 @@ function IdealComponent({ method, selected, actions }) {
   );
 }
 
-IdealComponent.propTypes = {
+DirectDebitComponent.propTypes = {
   method: paymentMethodShape.isRequired,
   selected: paymentMethodShape.isRequired,
   actions: shape({ change: func }).isRequired,
 };
 
-export default IdealComponent;
+export default DirectDebitComponent;

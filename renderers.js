@@ -1,10 +1,16 @@
 import PaymentBaseComponent from './src/components/PaymentBaseComponent';
 import IdealComponent from './src/components/IdealComponent';
+import AfterPayComponent from './src/components/AfterPayComponent';
+import In3Component from './src/components/In3Component';
+import PayAfterDeliveryComponent from './src/components/PayAfterDeliveryComponent';
+import EinvoicingComponent from './src/components/EinvoicingComponent';
+import DirectDebitComponent from './src/components/DirectDebitComponent';
+import DirectBankTransferComponent from './src/components/DirectBankTransferComponent';
 
 export default {
   multisafepay: PaymentBaseComponent,
   multisafepay_ideal: IdealComponent,
-  multisafepay_afterpay: PaymentBaseComponent,
+  multisafepay_afterpay: AfterPayComponent,
   multisafepay_alipay: PaymentBaseComponent,
   multisafepay_amex: PaymentBaseComponent,
   multisafepay_applepay: PaymentBaseComponent,
@@ -13,20 +19,20 @@ export default {
   multisafepay_belfius: PaymentBaseComponent,
   multisafepay_cbc: PaymentBaseComponent,
   multisafepay_creditcard: PaymentBaseComponent,
-  multisafepay_directbanktransfer: PaymentBaseComponent,
-  multisafepay_directdebit: PaymentBaseComponent,
+  multisafepay_directbanktransfer: DirectBankTransferComponent,
+  multisafepay_directdebit: DirectDebitComponent,
   multisafepay_dotpay: PaymentBaseComponent,
-  multisafepay_einvoicing: PaymentBaseComponent,
+  multisafepay_einvoicing: EinvoicingComponent,
   multisafepay_eps: PaymentBaseComponent,
   multisafepay_giropay: PaymentBaseComponent,
   multisafepay_idealqr: PaymentBaseComponent,
-  multisafepay_in3: PaymentBaseComponent,
+  multisafepay_in3: In3Component,
   multisafepay_inghomepay: PaymentBaseComponent,
   multisafepay_kbc: PaymentBaseComponent,
   multisafepay_klarna: PaymentBaseComponent,
   multisafepay_maestro: PaymentBaseComponent,
   multisafepay_mastercard: PaymentBaseComponent,
-  multisafepay_payafter: PaymentBaseComponent,
+  multisafepay_payafter: PayAfterDeliveryComponent,
   multisafepay_paypal: PaymentBaseComponent,
   multisafepay_paysafecard: PaymentBaseComponent,
   multisafepay_santander: PaymentBaseComponent,

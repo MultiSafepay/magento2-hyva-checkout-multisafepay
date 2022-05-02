@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import _get from 'lodash.get';
 import _set from 'lodash.set';
-import { __ } from '../../../../i18n';
+import { __ } from '@hyva/react-checkout/i18n';
+import { LOGIN_FORM } from '@hyva/react-checkout/config';
 import { performRedirect } from '../utility';
-import { LOGIN_FORM } from '../../../../config';
 import useMultiSafepayAppContext from './useMultiSafepayAppContext';
 import useMultiSafepayCartContext from './useMultiSafepayCartContext';
 

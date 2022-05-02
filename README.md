@@ -35,12 +35,23 @@ Add our package to the PaymentMethodsRepo section in the reactapp package.json:
 },
 ```
 
+If you are using [**Hyvä Checkout Example Template**](https://github.com/hyva-themes/magento2-checkout-example), then you should use below configuration instead of above.
+
+File: `src/reactapp/package.json`
+```
+"config": {
+    "paymentMethodsRepo": {
+        "multisafepay": "git@github.com:multisafepay/magento2-hyva-checkout-multisafepay.git -b hyva-checkout-example-template"
+    }
+},
+   ``` 
+
 Install the MultiSafepay package:
 ```
 npm install
 ```
 
-After that, add the MultiSafepay renderer to reactapp/src/PaymentMethods/paymentConfig.json:
+After that, add the MultiSafepay renderer to reactapp/src/paymentMethods/paymentConfig.json:
 
 ```
 {"availablePaymentMethods":[

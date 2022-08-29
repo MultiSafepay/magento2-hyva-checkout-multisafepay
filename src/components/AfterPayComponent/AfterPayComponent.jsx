@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from 'react';
 import { func, shape } from 'prop-types';
 import _get from 'lodash.get';
-import { __ } from '../../../../../i18n';
-import RadioInput from '../../../../../components/common/Form/RadioInput';
-import TextInput from '../../../../../components/common/Form/TextInput';
-import SelectInput from '../../../../../components/common/Form/SelectInput';
-import Card from '../../../../../components/common/Card';
+import { __ } from '@hyva/react-checkout/i18n';
+import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
+import TextInput from '@hyva/react-checkout/components/common/Form/TextInput';
+import SelectInput from '@hyva/react-checkout/components/common/Form/SelectInput';
+import Card from '@hyva/react-checkout/components/common/Card';
 import { paymentMethodShape } from '../../utility';
-import CheckoutFormContext from '../../../../../context/Form/CheckoutFormContext';
+import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormContext';
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayAfterPay from './hooks/useMultiSafepayAfterPay';
-import { PAYMENT_METHOD_FORM } from '../../../../../config';
-import CartContext from '../../../../../context/Cart/CartContext';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
+import CartContext from '@hyva/react-checkout/context/Cart/CartContext';
 import afterPayConfig from './afterPayConfig';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.afterpay.dateOfBirthField`;

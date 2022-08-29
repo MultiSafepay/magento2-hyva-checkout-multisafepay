@@ -1,14 +1,14 @@
 import React, { useEffect, useContext } from 'react';
 import { func, shape } from 'prop-types';
-import { __ } from '../../../../../i18n';
-import RadioInput from '../../../../../components/common/Form/RadioInput';
-import Card from '../../../../../components/common/Card';
-import SelectInput from '../../../../../components/common/Form/SelectInput';
+import { __ } from '@hyva/react-checkout/i18n';
+import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
+import Card from '@hyva/react-checkout/components/common/Card';
+import SelectInput from '@hyva/react-checkout/components/common/Form/SelectInput';
 import { paymentMethodShape } from '../../utility';
-import CheckoutFormContext from '../../../../../context/Form/CheckoutFormContext';
+import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormContext';
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayIdeal from './hooks/useMultiSafepayIdeal';
-import { PAYMENT_METHOD_FORM } from '../../../../../config';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import idealConfig from './idealConfig';
 
 const issuersField = `${PAYMENT_METHOD_FORM}.multisafepay.ideal.issuersField`;

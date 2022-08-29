@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import _get from 'lodash.get';
-import { PAYMENT_METHOD_FORM } from '../../../../../../config';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import usePerformPlaceOrder from '../../../hooks/usePerformPlaceOrder';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.payafterdelivery.dateOfBirthField`;

@@ -8,8 +8,6 @@ This is the module of our new Magento 2 Hyva Checkout integration.
 
 Before you get started with MultiSafepay and Hyva Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
 
-Please note that at the moment we are only supporting redirect payment methods in combination with Hyva Checkout. More features will be added in future releases.
-
 ## About MultiSafepay ##
 MultiSafepay is a collecting payment service provider which means we take care of the agreements, technical details and payment collection required for each payment method. You can start selling online today and manage all your transactions from one place.
 
@@ -30,7 +28,7 @@ Add our package to the PaymentMethodsRepo section in the reactapp package.json:
 ```
 "config": {
     "paymentMethodsRepo": {
-        "multisafepay": "git@github.com:multisafepay/magento2-hyva-checkout-multisafepay.git"
+        "multisafepay": "https://github.com/multisafepay/magento2-hyva-checkout-multisafepay"
     }
 },
 ```
@@ -40,12 +38,17 @@ Install the MultiSafepay package:
 npm install
 ```
 
-After that, add the MultiSafepay renderer to reactapp/src/PaymentMethods/paymentConfig.json:
+This module requires several third-party packages:
 
+[react-datepicker](https://www.npmjs.com/package/react-datepicker) - Adds a datepicker component for Date of Birth fields.
+
+[moment.js](https://momentjs.com/) - Parse the dates into a format that is supported by the MultiSafepay API.
+
+[lodash](https://lodash.com/) - Manipulation of objects through different built in modular methods
+
+To install these packages via npm, please run the following commands:
 ```
-{"availablePaymentMethods":[
-    "multisafepay"
-]}
+npm install --save react-datepicker moment lodash
 ```
 
 Make sure to rebuild the project with:

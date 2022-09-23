@@ -1,5 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { func, shape } from 'prop-types';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import { __ } from '../../../../../i18n';
 import RadioInput from '../../../../../components/common/Form/RadioInput';
 import TextInput from '../../../../../components/common/Form/TextInput';
@@ -11,6 +13,7 @@ import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaym
 import useMultiSafepayIn3 from './hooks/useMultiSafepayIn3';
 import { PAYMENT_METHOD_FORM } from '../../../../../config';
 import in3Config from './in3Config';
+import useCSS from '../../hooks/useMultiSafepayStyles';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.in3.dateOfBirthField`;
 const genderField = `${PAYMENT_METHOD_FORM}.multisafepay.in3.genderField`;
@@ -18,15 +21,19 @@ const phoneField = `${PAYMENT_METHOD_FORM}.multisafepay.in3.phoneField`;
 
 function In3Component({ method, selected, actions }) {
   const { formikData, setFieldValue } = useMultiSafepayPaymentMethodContext();
+  const [dateField, setDate] = useState(new Date());
   const { registerPaymentAction } = useContext(CheckoutFormContext);
   const { placeOrderWithIn3 } = useMultiSafepayIn3(method.code);
   const isSelected = method.code === selected.code;
 
   useEffect(() => {
-    setFieldValue(dateOfBirthField, '');
     setFieldValue(genderField, '');
     setFieldValue(phoneField, '');
   }, [setFieldValue]);
+
+  useEffect(() => {
+    setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
+  }, [dateField]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithIn3);
@@ -46,6 +53,10 @@ function In3Component({ method, selected, actions }) {
     return In3RadioInput;
   }
 
+  useCSS(
+    'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
+  );
+
   const genderOptions = [
     { value: 'mr', label: __('Mr.') },
     { value: 'mrs', label: __('Mrs.') },
@@ -58,10 +69,14 @@ function In3Component({ method, selected, actions }) {
       <div className="mx-4 my-4">
         <Card bg="darker">
           <div className="container flex flex-col justify-center w-4/5">
-            <TextInput
+            <DatePicker
               label={__('Date of Birth')}
-              name={dateOfBirthField}
-              formikData={formikData}
+              showYearDropdown
+              showMonthDropdown
+              dropdownMode="select"
+              selected={dateField}
+              className="w-full max-w-md form-input"
+              onChange={(date) => setDate(date)}
             />
             <SelectInput
               label={__('Gender')}

@@ -5,8 +5,12 @@ import { performRedirect } from '../utility';
 import { LOGIN_FORM } from '../../../../config';
 import useMultiSafepayAppContext from './useMultiSafepayAppContext';
 import useMultiSafepayCartContext from './useMultiSafepayCartContext';
+import {
+  checkErrors,
+  getErrors,
+} from '../components/CreditCardComponent/utility/multisafepayComponent';
 
-export default function usePerformPlaceOrder(paymentMethodCode) {
+export default function usePerformPlaceOrderWithComponent(paymentMethodCode) {
   const { cartId, setRestPaymentMethod, setOrderInfo } =
     useMultiSafepayCartContext();
   const { isLoggedIn, setPageLoader, setErrorMessage } =
@@ -15,6 +19,10 @@ export default function usePerformPlaceOrder(paymentMethodCode) {
   return useCallback(
     async (values, additionalData) => {
       try {
+        if (checkErrors()) {
+          throw new Error('MultiSafepay component error');
+        }
+
         const paymentMethodData = {
           paymentMethod: {
             method: paymentMethodCode,
@@ -38,12 +46,24 @@ export default function usePerformPlaceOrder(paymentMethodCode) {
           setOrderInfo(order);
         }
       } catch (error) {
+        let validationError = false;
+        let validationMessage =
+          'This transaction could not be performed. Please select another payment method.';
+
+        // eslint-disable-next-line
+        getErrors().errors.forEach(function (item) {
+          console.error(item.message);
+
+          if (!validationError && item.type === 'validation') {
+            validationMessage = __(
+              'One or more fields are invalid, please try again'
+            );
+            validationError = true;
+          }
+        });
+
         console.error(error);
-        setErrorMessage(
-          __(
-            'This transaction could not be performed. Please select another payment method.'
-          )
-        );
+        setErrorMessage(__(validationMessage));
         setPageLoader(false);
       }
     },

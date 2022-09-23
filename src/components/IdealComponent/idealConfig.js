@@ -1,10 +1,10 @@
-import _get from 'lodash.get';
+import { get } from 'lodash';
 import { __ } from '../../../../../i18n';
 import RootElement from '../../../../../utils/rootElement';
 
 const config = RootElement.getPaymentConfig();
-const ideal = _get(config, 'multisafepay_ideal');
-const issuers = _get(ideal, 'issuers', []);
+const ideal = get(config, 'multisafepay_ideal');
+const issuers = get(ideal, 'issuers', []);
 
 const idealConfig = {
   issuers: issuers.map(({ code, description }) => ({

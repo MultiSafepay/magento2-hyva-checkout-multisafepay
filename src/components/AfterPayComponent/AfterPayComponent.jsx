@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { func, shape } from 'prop-types';
-import _get from 'lodash.get';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import { __ } from '../../../../../i18n';
 import RadioInput from '../../../../../components/common/Form/RadioInput';
 import TextInput from '../../../../../components/common/Form/TextInput';
@@ -11,8 +12,8 @@ import CheckoutFormContext from '../../../../../context/Form/CheckoutFormContext
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayAfterPay from './hooks/useMultiSafepayAfterPay';
 import { PAYMENT_METHOD_FORM } from '../../../../../config';
-import CartContext from '../../../../../context/Cart/CartContext';
 import afterPayConfig from './afterPayConfig';
+import useCSS from '../../hooks/useMultiSafepayStyles';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.afterpay.dateOfBirthField`;
 const genderField = `${PAYMENT_METHOD_FORM}.multisafepay.afterpay.genderField`;
@@ -20,16 +21,19 @@ const phoneField = `${PAYMENT_METHOD_FORM}.multisafepay.afterpay.phoneField`;
 
 function AfterPayComponent({ method, selected, actions }) {
   const { formikData, setFieldValue } = useMultiSafepayPaymentMethodContext();
+  const [dateField, setDate] = useState(new Date());
   const { registerPaymentAction } = useContext(CheckoutFormContext);
   const { placeOrderWithAfterPay } = useMultiSafepayAfterPay(method.code);
   const isSelected = method.code === selected.code;
-  const cart = _get(useContext(CartContext), 'cart', {}) || {};
 
   useEffect(() => {
-    setFieldValue(dateOfBirthField, '');
     setFieldValue(genderField, '');
     setFieldValue(phoneField, '');
   }, [setFieldValue]);
+
+  useEffect(() => {
+    setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
+  }, [dateField]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithAfterPay);
@@ -49,6 +53,10 @@ function AfterPayComponent({ method, selected, actions }) {
     return AfterPayRadioInput;
   }
 
+  useCSS(
+    'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
+  );
+
   const genderOptions = [
     { value: 'mr', label: __('Mr.') },
     { value: 'mrs', label: __('Mrs.') },
@@ -61,10 +69,14 @@ function AfterPayComponent({ method, selected, actions }) {
       <div className="mx-4 my-4">
         <Card bg="darker">
           <div className="container flex flex-col justify-center w-4/5">
-            <TextInput
+            <DatePicker
               label={__('Date of Birth')}
-              name={dateOfBirthField}
-              formikData={formikData}
+              showYearDropdown
+              showMonthDropdown
+              dropdownMode="select"
+              selected={dateField}
+              className="w-full max-w-md form-input"
+              onChange={(date) => setDate(date)}
             />
             <SelectInput
               label={__('Gender')}

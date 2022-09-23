@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import _get from 'lodash.get';
+import { get } from 'lodash';
 import { PAYMENT_METHOD_FORM } from '../../../../../../config';
 import usePerformPlaceOrder from '../../../hooks/usePerformPlaceOrder';
 
@@ -14,12 +14,12 @@ export default function useMultiSafepayDirectBankTransfer(paymentMethodCode) {
   const performPlaceOrder = usePerformPlaceOrder(paymentMethodCode);
   const placeOrderWithDirectBankTransfer = useCallback(
     async (values) => {
-      const accountId = _get(values, accountIdField);
-      const accountHolderName = _get(values, accountHolderNameField);
-      const accountHolderCity = _get(values, accountHolderCityField);
-      const accountHolderCountry = _get(values, accountHolderCountryField);
-      const accountHolderIban = _get(values, accountHolderIbanField);
-      const accountHolderBic = _get(values, accountHolderBicField);
+      const accountId = get(values, accountIdField);
+      const accountHolderName = get(values, accountHolderNameField);
+      const accountHolderCity = get(values, accountHolderCityField);
+      const accountHolderCountry = get(values, accountHolderCountryField);
+      const accountHolderIban = get(values, accountHolderIbanField);
+      const accountHolderBic = get(values, accountHolderBicField);
       const additionalData = {
         account_id: accountId,
         account_holder_name: accountHolderName,

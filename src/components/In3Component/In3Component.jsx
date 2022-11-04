@@ -33,7 +33,7 @@ function In3Component({ method, selected, actions }) {
 
   useEffect(() => {
     setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
-  }, [dateField]);
+  }, [dateField, setFieldValue]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithIn3);
@@ -49,13 +49,13 @@ function In3Component({ method, selected, actions }) {
     />
   );
 
-  if (!isSelected || in3Config.transaction_type === 'redirect') {
-    return In3RadioInput;
-  }
-
   useCSS(
     'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
   );
+
+  if (!isSelected || in3Config.transaction_type === 'redirect') {
+    return In3RadioInput;
+  }
 
   const genderOptions = [
     { value: 'mr', label: __('Mr.') },

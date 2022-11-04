@@ -32,7 +32,7 @@ function PayAfterDeliveryComponent({ method, selected, actions }) {
 
   useEffect(() => {
     setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
-  }, [dateField]);
+  }, [dateField, setFieldValue]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithPayAfterDelivery);
@@ -48,13 +48,13 @@ function PayAfterDeliveryComponent({ method, selected, actions }) {
     />
   );
 
-  if (!isSelected || payAfterDeliveryConfig.transaction_type === 'redirect') {
-    return PayAfterDeliveryRadioInput;
-  }
-
   useCSS(
     'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
   );
+
+  if (!isSelected || payAfterDeliveryConfig.transaction_type === 'redirect') {
+    return PayAfterDeliveryRadioInput;
+  }
 
   return (
     <div>

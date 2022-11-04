@@ -33,7 +33,7 @@ function AfterPayComponent({ method, selected, actions }) {
 
   useEffect(() => {
     setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
-  }, [dateField]);
+  }, [dateField, setFieldValue]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithAfterPay);
@@ -49,13 +49,13 @@ function AfterPayComponent({ method, selected, actions }) {
     />
   );
 
-  if (!isSelected || afterPayConfig.transaction_type === 'redirect') {
-    return AfterPayRadioInput;
-  }
-
   useCSS(
     'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
   );
+
+  if (!isSelected || afterPayConfig.transaction_type === 'redirect') {
+    return AfterPayRadioInput;
+  }
 
   const genderOptions = [
     { value: 'mr', label: __('Mr.') },

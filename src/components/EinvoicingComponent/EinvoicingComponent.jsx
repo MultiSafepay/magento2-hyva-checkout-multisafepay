@@ -30,7 +30,7 @@ function EinvoicingComponent({ method, selected, actions }) {
 
   useEffect(() => {
     setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
-  }, [dateField]);
+  }, [dateField, setFieldValue]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithEinvoicing);
@@ -46,13 +46,13 @@ function EinvoicingComponent({ method, selected, actions }) {
     />
   );
 
-  if (!isSelected || einvoicingConfig.transaction_type === 'redirect') {
-    return EinvoicingRadioInput;
-  }
-
   useCSS(
     'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
   );
+
+  if (!isSelected || einvoicingConfig.transaction_type === 'redirect') {
+    return EinvoicingRadioInput;
+  }
 
   return (
     <div>

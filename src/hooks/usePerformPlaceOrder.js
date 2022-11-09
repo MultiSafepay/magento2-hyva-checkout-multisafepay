@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
-import _get from 'lodash.get';
-import _set from 'lodash.set';
+import { get, set } from 'lodash';
 import { __ } from '@hyva/react-checkout/i18n';
 import { LOGIN_FORM } from '@hyva/react-checkout/config';
 import { performRedirect } from '../utility';

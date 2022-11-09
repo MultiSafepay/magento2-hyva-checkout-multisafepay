@@ -1,4 +1,4 @@
-import _get from 'lodash.get';
+import { get } from 'lodash';
 import RootElement from '@hyva/react-checkout/utils/rootElement';
 
 const config = RootElement.getPaymentConfig();

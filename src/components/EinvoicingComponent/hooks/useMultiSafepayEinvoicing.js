@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import _get from 'lodash.get';
+import { get } from 'lodash';
 import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import usePerformPlaceOrder from '../../../hooks/usePerformPlaceOrder';
 

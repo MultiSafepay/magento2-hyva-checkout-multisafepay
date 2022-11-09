@@ -1,4 +1,4 @@
-import _get from 'lodash.get';
+import { get } from 'lodash';
 import { __ } from '@hyva/react-checkout/i18n';
 import RootElement from '@hyva/react-checkout/utils/rootElement';
 

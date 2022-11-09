@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { func, shape } from 'prop-types';
-import _get from 'lodash.get';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import { __ } from '@hyva/react-checkout/i18n';
@@ -13,7 +12,6 @@ import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormC
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayAfterPay from './hooks/useMultiSafepayAfterPay';
 import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
-import CartContext from '@hyva/react-checkout/context/Cart/CartContext';
 import afterPayConfig from './afterPayConfig';
 import useCSS from '../../hooks/useMultiSafepayStyles';
 

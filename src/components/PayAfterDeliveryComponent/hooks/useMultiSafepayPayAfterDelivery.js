@@ -10,8 +10,8 @@ export default function useMultiSafepayPayAfterDelivery(paymentMethodCode) {
   const performPlaceOrder = usePerformPlaceOrder(paymentMethodCode);
   const placeOrderWithPayAfterDelivery = useCallback(
     async (values) => {
-      const dateOfBirth = _get(values, dateOfBirthField);
-      const accountNumber = _get(values, accountNumberField);
+      const dateOfBirth = get(values, dateOfBirthField);
+      const accountNumber = get(values, accountNumberField);
       const additionalData = {
         date_of_birth: dateOfBirth,
         account_number: accountNumber,

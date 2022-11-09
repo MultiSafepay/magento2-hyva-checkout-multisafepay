@@ -1,5 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { func, shape } from 'prop-types';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import { __ } from '@hyva/react-checkout/i18n';
 import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
 import TextInput from '@hyva/react-checkout/components/common/Form/TextInput';
@@ -10,20 +12,25 @@ import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaym
 import useMultiSafepayEinvoicing from './hooks/useMultiSafepayEinvoicing';
 import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import einvoicingConfig from './einvoicingConfig';
+import useCSS from '../../hooks/useMultiSafepayStyles';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.einvoicing.dateOfBirthField`;
 const accountNumberField = `${PAYMENT_METHOD_FORM}.multisafepay.einvoicing.accountNumberField`;
 
 function EinvoicingComponent({ method, selected, actions }) {
   const { formikData, setFieldValue } = useMultiSafepayPaymentMethodContext();
+  const [dateField, setDate] = useState(new Date());
   const { registerPaymentAction } = useContext(CheckoutFormContext);
   const { placeOrderWithEinvoicing } = useMultiSafepayEinvoicing(method.code);
   const isSelected = method.code === selected.code;
 
   useEffect(() => {
-    setFieldValue(dateOfBirthField, '');
     setFieldValue(accountNumberField, '');
   }, [setFieldValue]);
+
+  useEffect(() => {
+    setFieldValue(dateOfBirthField, moment(dateField).format('YYYY-MM-DD'));
+  }, [dateField, setFieldValue]);
 
   useEffect(() => {
     registerPaymentAction(method.code, placeOrderWithEinvoicing);
@@ -39,6 +46,10 @@ function EinvoicingComponent({ method, selected, actions }) {
     />
   );
 
+  useCSS(
+    'https://cdnjs.cloudflare.com/ajax/libs/react-datepicker/2.8.0/react-datepicker.min.css'
+  );
+
   if (!isSelected || einvoicingConfig.transaction_type === 'redirect') {
     return EinvoicingRadioInput;
   }
@@ -49,10 +60,14 @@ function EinvoicingComponent({ method, selected, actions }) {
       <div className="mx-4 my-4">
         <Card bg="darker">
           <div className="container flex flex-col justify-center w-4/5">
-            <TextInput
+            <DatePicker
               label={__('Date of Birth')}
-              name={dateOfBirthField}
-              formikData={formikData}
+              showYearDropdown
+              showMonthDropdown
+              dropdownMode="select"
+              selected={dateField}
+              className="w-full max-w-md form-input"
+              onChange={(date) => setDate(date)}
             />
             <TextInput
               label={__('Account number')}

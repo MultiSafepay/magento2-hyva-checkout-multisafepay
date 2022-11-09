@@ -6,6 +6,7 @@ import PayAfterDeliveryComponent from './src/components/PayAfterDeliveryComponen
 import EinvoicingComponent from './src/components/EinvoicingComponent';
 import DirectDebitComponent from './src/components/DirectDebitComponent';
 import DirectBankTransferComponent from './src/components/DirectBankTransferComponent';
+import CreditCardComponent from './src/components/CreditCardComponent';
 
 export default {
   multisafepay: PaymentBaseComponent,
@@ -18,7 +19,7 @@ export default {
   multisafepay_banktransfer: PaymentBaseComponent,
   multisafepay_belfius: PaymentBaseComponent,
   multisafepay_cbc: PaymentBaseComponent,
-  multisafepay_creditcard: PaymentBaseComponent,
+  multisafepay_creditcard: CreditCardComponent,
   multisafepay_directbanktransfer: DirectBankTransferComponent,
   multisafepay_directdebit: DirectDebitComponent,
   multisafepay_dotpay: PaymentBaseComponent,

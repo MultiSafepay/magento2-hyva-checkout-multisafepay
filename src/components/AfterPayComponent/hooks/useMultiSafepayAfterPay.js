@@ -11,9 +11,9 @@ export default function useMultiSafepayAfterPay(paymentMethodCode) {
   const performPlaceOrder = usePerformPlaceOrder(paymentMethodCode);
   const placeOrderWithAfterPay = useCallback(
     async (values) => {
-      const dateOfBirth = _get(values, dateOfBirthField);
-      const gender = _get(values, genderField);
-      const phone = _get(values, phoneField);
+      const dateOfBirth = get(values, dateOfBirthField);
+      const gender = get(values, genderField);
+      const phone = get(values, phoneField);
       const additionalData = {
         date_of_birth: dateOfBirth,
         gender,

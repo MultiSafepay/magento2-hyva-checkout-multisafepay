@@ -10,8 +10,8 @@ export default function useMultiSafepayDirectDebit(paymentMethodCode) {
   const performPlaceOrder = usePerformPlaceOrder(paymentMethodCode);
   const placeOrderWithDirectDebit = useCallback(
     async (values) => {
-      const accountHolderName = _get(values, accountHolderNameField);
-      const accountHolderIban = _get(values, accountHolderIbanField);
+      const accountHolderName = get(values, accountHolderNameField);
+      const accountHolderIban = get(values, accountHolderIbanField);
       const additionalData = {
         account_holder_name: accountHolderName,
         account_holder_iban: accountHolderIban,

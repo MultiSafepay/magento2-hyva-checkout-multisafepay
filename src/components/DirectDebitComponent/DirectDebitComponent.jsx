@@ -50,7 +50,7 @@ function DirectDebitComponent({ method, selected, actions }) {
         <Card bg="darker">
           <div className="container flex flex-col justify-center w-4/5">
             <TextInput
-              label={__('Date of Birth')}
+              label={__('Account holder name')}
               name={accountHolderNameField}
               formikData={formikData}
             />

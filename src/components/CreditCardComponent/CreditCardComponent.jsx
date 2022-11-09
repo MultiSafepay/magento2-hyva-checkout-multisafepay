@@ -1,14 +1,14 @@
 import React, { useEffect, useContext } from 'react';
 import { get } from 'lodash';
 import { func, shape } from 'prop-types';
-import Card from '../../../../../components/common/Card';
-import { paymentMethodShape } from '../../utility';
+import Card from '@hyva/react-checkout/components/common/Card';
+import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
+import LocalStorage from '@hyva/react-checkout/utils/localStorage';
+import CartContext from '@hyva/react-checkout/context/Cart/CartContext';
 import useMultiSafepayCheckoutFormContext from '../../hooks/useMultiSafepayCheckoutFormContext';
 import useMultiSafepayCreditCard from './hooks/useMultiSafepayCreditCard';
-import RadioInput from '../../../../../components/common/Form/RadioInput';
 import creditCardConfig from './creditCardConfig';
-import LocalStorage from '../../../../../utils/localStorage';
-import CartContext from '../../../../../context/Cart/CartContext';
+import { paymentMethodShape } from '../../utility';
 import {
   addComponent,
   loadComponent,

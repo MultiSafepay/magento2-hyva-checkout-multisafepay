@@ -6,12 +6,12 @@ import { __ } from '@hyva/react-checkout/i18n';
 import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
 import TextInput from '@hyva/react-checkout/components/common/Form/TextInput';
 import Card from '@hyva/react-checkout/components/common/Card';
-import { paymentMethodShape } from '../../utility';
 import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormContext';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayPayAfterDelivery from './hooks/useMultiSafepayPayAfterDelivery';
-import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import payAfterDeliveryConfig from './payAfterDeliveryConfig';
+import { paymentMethodShape } from '../../utility';
 import useCSS from '../../hooks/useMultiSafepayStyles';
 
 const dateOfBirthField = `${PAYMENT_METHOD_FORM}.multisafepay.payafterdelivery.dateOfBirthField`;

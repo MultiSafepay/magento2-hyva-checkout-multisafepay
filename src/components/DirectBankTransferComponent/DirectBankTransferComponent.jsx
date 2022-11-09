@@ -4,12 +4,12 @@ import { __ } from '@hyva/react-checkout/i18n';
 import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
 import TextInput from '@hyva/react-checkout/components/common/Form/TextInput';
 import Card from '@hyva/react-checkout/components/common/Card';
-import { paymentMethodShape } from '../../utility';
 import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormContext';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import useMultiSafepayPaymentMethodContext from '../../hooks/useMultiSafepayPaymentMethodContext';
 import useMultiSafepayDirectBankTransfer from './hooks/useMultiSafepayDirectBankTransfer';
-import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import directBankTransferConfig from './directBankTransferConfig';
+import { paymentMethodShape } from '../../utility';
 
 const accountIdField = `${PAYMENT_METHOD_FORM}.multisafepay.directbanktransfer.accountIdField`;
 const accountHolderNameField = `${PAYMENT_METHOD_FORM}.multisafepay.directbanktransfer.accountHolderNameField`;

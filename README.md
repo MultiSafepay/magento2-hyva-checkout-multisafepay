@@ -2,11 +2,11 @@
   <img src="https://www.multisafepay.com/img/multisafepaylogo.svg" width="400px" position="center">
 </p>
 
-# MultiSafepay module for Hyva Checkout
+# MultiSafepay module for React Checkout
 
-This is the module of our new Magento 2 Hyva Checkout integration.
+This is the module of our new Magento 2 React Checkout integration.
 
-Before you get started with MultiSafepay and Hyva Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
+Before you get started with MultiSafepay and the React Checkout, please read and follow our [installation & configuration manual](https://docs.multisafepay.com/integrations/plugins/magento2/) first.
 
 ## About MultiSafepay ##
 MultiSafepay is a collecting payment service provider which means we take care of the agreements, technical details and payment collection required for each payment method. You can start selling online today and manage all your transactions from one place.

@@ -1,14 +1,14 @@
 import { useCallback } from 'react';
 import { get, set } from 'lodash';
-import { __ } from '../../../../i18n';
-import { performRedirect } from '../utility';
-import { LOGIN_FORM } from '../../../../config';
+import { __ } from '@hyva/react-checkout/i18n';
+import { LOGIN_FORM } from '@hyva/react-checkout/config';
 import useMultiSafepayAppContext from './useMultiSafepayAppContext';
 import useMultiSafepayCartContext from './useMultiSafepayCartContext';
 import {
   checkErrors,
   getErrors,
 } from '../components/CreditCardComponent/utility/multisafepayComponent';
+import { performRedirect } from '../utility';
 
 export default function usePerformPlaceOrderWithComponent(paymentMethodCode) {
   const { cartId, setRestPaymentMethod, setOrderInfo } =

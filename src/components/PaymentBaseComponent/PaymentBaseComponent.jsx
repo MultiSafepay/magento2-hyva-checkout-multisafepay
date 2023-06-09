@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useContext } from 'react';
 import { func, shape } from 'prop-types';
-import RadioInput from '../../../../../components/common/Form/RadioInput';
+import RadioInput from '@hyva/react-checkout/components/common/Form/RadioInput';
+import CheckoutFormContext from '@hyva/react-checkout/context/Form/CheckoutFormContext';
 import { paymentMethodShape } from '../../utility';
-import CheckoutFormContext from '../../../../../context/Form/CheckoutFormContext';
 import usePerformPlaceOrder from '../../hooks/usePerformPlaceOrder';
 
 function PaymentBaseComponent({ method, selected, actions }) {

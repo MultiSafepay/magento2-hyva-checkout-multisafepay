@@ -1,6 +1,6 @@
 import { shape, string } from 'prop-types';
 import { get } from 'lodash';
-import { config } from '../../../../config';
+import { config } from '@hyva/react-checkout/config';
 
 export const paymentMethodShape = shape({ title: string, code: string });
 

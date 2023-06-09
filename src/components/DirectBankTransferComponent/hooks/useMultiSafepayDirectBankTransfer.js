@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { get } from 'lodash';
-import { PAYMENT_METHOD_FORM } from '../../../../../../config';
+import { PAYMENT_METHOD_FORM } from '@hyva/react-checkout/config';
 import usePerformPlaceOrder from '../../../hooks/usePerformPlaceOrder';
 
 const accountIdField = `${PAYMENT_METHOD_FORM}.multisafepay.directbanktransfer.accountIdField`;

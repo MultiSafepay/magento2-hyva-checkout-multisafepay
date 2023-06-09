@@ -1,6 +1,6 @@
 import { get } from 'lodash';
-import { __ } from '../../../../../i18n';
-import RootElement from '../../../../../utils/rootElement';
+import { __ } from '@hyva/react-checkout/i18n';
+import RootElement from '@hyva/react-checkout/utils/rootElement';
 
 const config = RootElement.getPaymentConfig();
 const ideal = get(config, 'multisafepay_ideal');
